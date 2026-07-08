@@ -3,5 +3,6 @@ from app.main import app
 
 client = TestClient(app)
 
+
 def test_root():
     assert client.get("/").json() == {"message": "hello ci"}
