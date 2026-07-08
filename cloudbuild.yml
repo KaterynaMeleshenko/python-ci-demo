@@ -9,3 +9,13 @@ steps:
         python -m black --check app tests
         python -m ruff check app tests
         python -m pytest -v
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - us-central1-docker.pkg.dev/$PROJECT_ID/python-ci-demo-repo/python-ci-demo:$BUILD_ID
+      - .
+
+images:
+  - us-central1-docker.pkg.dev/$PROJECT_ID/python-ci-demo-repo/python-ci-demo:$BUILD_ID
